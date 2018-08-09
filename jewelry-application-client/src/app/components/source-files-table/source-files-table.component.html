@@ -1,6 +1,4 @@
 <br/>
-<br/>
-<br/>
 
 <mat-form-field>
   <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
@@ -11,7 +9,7 @@
     <!-- Position Column -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> ID. </th>
-      <td mat-cell *matCellDef="let sourcefile"> {{sourcefile.id}} </td>
+      <td mat-cell *matCellDef="let sourcefile"> <a [routerLink]="['/source-files', sourcefile.id]">{{sourcefile.id}}</a> </td>
     </ng-container>
 
     <!-- Name Column -->

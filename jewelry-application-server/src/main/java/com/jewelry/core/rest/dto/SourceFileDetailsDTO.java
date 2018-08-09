@@ -5,15 +5,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.time.Instant;
+import java.math.BigDecimal;
 
 @Data
 @NoArgsConstructor @AllArgsConstructor
-public class SourceFileHeaderDTO implements Serializable {
+public class SourceFileDetailsDTO implements Serializable {
     private Long id;
 
-    private String name;
-
-    private Instant importDate;
-
+    private String itemNumber;
+    private BigDecimal price;
+    private String imageLink;
 }

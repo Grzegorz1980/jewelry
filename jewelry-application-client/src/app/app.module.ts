@@ -5,21 +5,26 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import {AppComponent} from './app.component';
-import {SourceFilesTableComponent} from './components/sourcefilestable/source-files-table.component';
+import {SourceFilesTableComponent} from './components/source-files-table/source-files-table.component';
 import {SourceFilesService} from './services/source-files.service';
 import {ImportFilesComponent} from './components/import-files/import-files.component';
 import {PageNotFoundComponent} from "./not-found.component";
 import {MatFormFieldModule, MatInputModule, MatPaginatorModule, MatSortModule, MatTableModule} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { SourceFileDetailsListComponent } from './components/source-file-details-list/source-file-details-list.component';
 
 
 const appRoutes: Routes = [
-  {path: 'source-files', component: SourceFilesTableComponent},
   {path: 'import-files', component: ImportFilesComponent},
   {
     path: 'source-files',
     component: SourceFilesTableComponent,
     data: {title: 'Source Files'}
+  },
+  {
+    path: 'source-files/:id',
+    component: SourceFileDetailsListComponent,
+    data: {title: 'Source Files Details'}
   },
   {
     path: '',
@@ -33,8 +38,10 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     SourceFilesTableComponent,
+    SourceFileDetailsListComponent,
     ImportFilesComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    SourceFileDetailsListComponent
   ],
   imports: [
     RouterModule.forRoot(

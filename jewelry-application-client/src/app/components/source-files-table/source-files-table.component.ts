@@ -11,6 +11,8 @@ import { SourceFile } from '../../models/source-file.model';
 export class SourceFilesTableComponent implements OnInit {
   dataSource = new MatTableDataSource<SourceFile>();
   displayedColumns = ['id', 'name', 'importDate'];
+  selectedId: number;
+
   constructor(private sourceFilesService: SourceFilesService) { }
 
   @ViewChild(MatSort) sort: MatSort;
@@ -30,6 +32,10 @@ export class SourceFilesTableComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  onSelect(selectedId: number): void {
+    this.selectedId = selectedId;
   }
 }
 

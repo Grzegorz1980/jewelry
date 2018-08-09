@@ -4,9 +4,13 @@ table {
 
 .mat-form-field {
   font-size: 14px;
-  width: 100%;
+  width: 50%;
 }
 
 td, th {
   width: 25%;
+}
+
+mat-grid-tile {
+  background: lightblue;
 }

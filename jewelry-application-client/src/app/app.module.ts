@@ -9,7 +9,7 @@ import {SourceFilesTableComponent} from './components/source-files-table/source-
 import {SourceFilesService} from './services/source-files.service';
 import {ImportFilesComponent} from './components/import-files/import-files.component';
 import {PageNotFoundComponent} from "./not-found.component";
-import {MatFormFieldModule, MatInputModule, MatPaginatorModule, MatSortModule, MatTableModule} from '@angular/material';
+import {MatFormFieldModule, MatInputModule, MatPaginatorModule, MatSortModule, MatTableModule, MatGridListModule,} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { SourceFileDetailsListComponent } from './components/source-file-details-list/source-file-details-list.component';
 
@@ -20,11 +20,6 @@ const appRoutes: Routes = [
     path: 'source-files',
     component: SourceFilesTableComponent,
     data: {title: 'Source Files'}
-  },
-  {
-    path: 'source-files/:id',
-    component: SourceFileDetailsListComponent,
-    data: {title: 'Source Files Details'}
   },
   {
     path: '',
@@ -55,6 +50,7 @@ const appRoutes: Routes = [
     MatPaginatorModule,
     MatInputModule,
     MatFormFieldModule,
+    MatGridListModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,

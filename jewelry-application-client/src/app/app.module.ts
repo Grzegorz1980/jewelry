@@ -3,6 +3,8 @@ import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+
 
 import {AppComponent} from './app.component';
 import {SourceFilesTableComponent} from './components/source-files-table/source-files-table.component';

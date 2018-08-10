@@ -3,15 +3,23 @@ import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {SourceFilesService} from '../../services/source-files.service';
 import {SourceFileDetail} from '../../models/source-file-detail.model';
 import {ActivatedRoute} from "@angular/router";
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-source-file-details-list',
   templateUrl: './source-file-details-list.component.html',
-  styleUrls: ['./source-file-details-list.component.css']
+  styleUrls: ['./source-file-details-list.component.css'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0', display: 'none'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class SourceFileDetailsListComponent implements OnInit {
   dataSource = new MatTableDataSource<SourceFileDetail>();
-  displayedColumns = ['id', 'itemNumber', 'price'];
+  columnsToDisplay = ['id', 'itemNumber', 'price'];
   @Input() selectedId: number;
 
   constructor(private sourceFilesService: SourceFilesService, private route: ActivatedRoute, private changeDetectorRefs: ChangeDetectorRef) {

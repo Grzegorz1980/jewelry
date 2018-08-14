@@ -3,29 +3,25 @@ import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {animate, state, style, transition, trigger} from '@angular/animations';
-
 
 import {AppComponent} from './app.component';
-import {SourceFilesTableComponent} from './components/source-files-table/source-files-table.component';
-import {SourceFilesService} from './services/source-files.service';
-import {ImportFilesComponent} from './components/import-files/import-files.component';
+import {ImportFileComponent} from './components/import-file/import-file.component';
 import {PageNotFoundComponent} from "./not-found.component";
-import {MatFormFieldModule, MatInputModule, MatPaginatorModule, MatSortModule, MatTableModule, MatGridListModule,} from '@angular/material';
+import {MatFormFieldModule, MatGridListModule, MatInputModule, MatPaginatorModule, MatSortModule, MatTableModule,} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { SourceFileDetailsListComponent } from './components/source-file-details-list/source-file-details-list.component';
-
+import {JewelryListComponent} from './components/jewelry-list/jewelry-list.component';
+import {JewelryListService} from './services/jewelry-list/jewelry-list.service';
 
 const appRoutes: Routes = [
-  {path: 'import-files', component: ImportFilesComponent},
+  {path: 'import-file', component: ImportFileComponent},
   {
-    path: 'source-files',
-    component: SourceFilesTableComponent,
-    data: {title: 'Source Files'}
+    path: 'jewelry-list',
+    component: JewelryListComponent,
+    data: {title: 'Jewelry'}
   },
   {
     path: '',
-    redirectTo: '/source-files',
+    redirectTo: '/jewelry-list',
     pathMatch: 'full'
   },
   {path: '**', component: PageNotFoundComponent}
@@ -34,11 +30,9 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    SourceFilesTableComponent,
-    SourceFileDetailsListComponent,
-    ImportFilesComponent,
+    ImportFileComponent,
     PageNotFoundComponent,
-    SourceFileDetailsListComponent
+    JewelryListComponent
   ],
   imports: [
     RouterModule.forRoot(
@@ -57,7 +51,9 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     BrowserAnimationsModule,
   ],
-  providers: [SourceFilesService],
+  providers: [
+              JewelryListService
+  ],
   bootstrap: [AppComponent]
 })
 

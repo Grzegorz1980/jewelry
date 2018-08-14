@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SourceFilesTableComponent } from './source-files-table.component';
+import { JewelryListComponent } from './jewelry-list.component';
 
-describe('SourceFilesTableComponent', () => {
-  let component: SourceFilesTableComponent;
-  let fixture: ComponentFixture<SourceFilesTableComponent>;
+describe('JewelryListComponent', () => {
+  let component: JewelryListComponent;
+  let fixture: ComponentFixture<JewelryListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SourceFilesTableComponent ]
+      declarations: [ JewelryListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SourceFilesTableComponent);
+    fixture = TestBed.createComponent(JewelryListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,11 @@
+.mat-header-row, .mat-row {
+  min-width: 1000px;
+}
+
+.mat-row.element-row:hover {
+  background: #f5f5f5;
+}
+
+.mat-row.element-row:active {
+  background: #efefef;
+}

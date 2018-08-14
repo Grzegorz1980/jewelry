@@ -1,0 +1,38 @@
+<div>
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+
+  <mat-table [dataSource]="dataSource" matSort>
+
+    <!-- Business ID Column -->
+    <ng-container matColumnDef="businessId">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+      <mat-cell *matCellDef="let jewel"> {{jewel.businessId}}</mat-cell>
+    </ng-container>
+
+    <!-- SKU Column -->
+    <ng-container matColumnDef="sku">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> SKU </mat-header-cell>
+      <mat-cell *matCellDef="let jewel"> {{jewel.sku}}</mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Nazwa </mat-header-cell>
+      <mat-cell *matCellDef="let jewel"> {{jewel.name}}</mat-cell>
+    </ng-container>
+
+    <!-- Type Column -->
+    <ng-container matColumnDef="type">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Typ </mat-header-cell>
+      <mat-cell *matCellDef="let jewel"> {{jewel.type}}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" [class.selected]="row.id === selectedId" (click)="onSelect(row.id)" class="element-row"></mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+</div>

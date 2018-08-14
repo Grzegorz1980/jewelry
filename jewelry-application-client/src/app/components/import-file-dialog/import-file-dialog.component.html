@@ -9,9 +9,12 @@
 
 <h4 mat-line *ngIf="selected">{{fileToUpload.name}}</h4>
 <mat-progress-bar *ngIf="progress" mode="determinate" [value]="progress | async"></mat-progress-bar>
+<h4 mat-line *ngIf="uploadSuccessful">Result: {{response.result}}</h4>
+<h4 mat-line *ngIf="uploadSuccessful">Message: {{response.message}}</h4>
 
 <!-- This are the actions of the dialog, containing the primary and the cancel button-->
 <mat-dialog-actions class="actions">
   <button *ngIf="showCancelButton" mat-button mat-dialog-close>Anuluj</button>
   <button *ngIf="selected" mat-raised-button color="primary" [disabled]="!canBeClosed" (click)="closeDialog()">{{primaryButtonText}}</button>
 </mat-dialog-actions>
+

@@ -18,6 +18,7 @@ export class ImportFileDialogComponent implements OnInit {
   showCancelButton = true;
   selected = false;
   uploadSuccessful = false;
+  response;
 
   constructor(public dialogRef: MatDialogRef<ImportFileDialogComponent>, public uploadService: UploadService) {
   }
@@ -68,6 +69,7 @@ export class ImportFileDialogComponent implements OnInit {
 
       // ... the upload was successful...
       this.uploadSuccessful = true;
+      this.response = this.uploadService.response;
     });
   }
 }

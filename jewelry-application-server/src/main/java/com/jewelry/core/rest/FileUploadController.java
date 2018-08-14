@@ -23,10 +23,10 @@ public class FileUploadController {
     @PostMapping("/uploadFile")
     public FileUploadResponseDTO uploadFile(@RequestParam("file") MultipartFile file) {
         try {
-            logger.info("Uploaded fileName=" + file.getName());
+            logger.info("Uploaded fileName=" + file.getOriginalFilename());
             BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream()));
             logger.info("First line = " + reader.readLine());
-            return new FileUploadResponseDTO(ServerResponse.OK, file.getName());
+            return new FileUploadResponseDTO(ServerResponse.OK, "Załadowany plik:" + file.getOriginalFilename());
         } catch (IOException e) {
             return new FileUploadResponseDTO(ServerResponse.ERROR, e.getMessage());
         }

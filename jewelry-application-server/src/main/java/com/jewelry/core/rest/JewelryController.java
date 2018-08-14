@@ -2,9 +2,7 @@ package com.jewelry.core.rest;
 
 import com.jewelry.core.db.model.Jewel;
 import com.jewelry.core.rest.dto.JewelDTO;
-import com.jewelry.core.rest.dto.SourceFileDetailsDTO;
 import com.jewelry.core.service.JewelryService;
-import com.jewelry.core.service.SourceFileService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;

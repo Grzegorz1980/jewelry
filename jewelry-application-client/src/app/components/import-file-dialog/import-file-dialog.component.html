@@ -1,0 +1,17 @@
+<input type="file" #file style="display: none" (change)="onFilesAdded()" multiple/>
+
+<h1 mat-dialog-title>Załaduj plik</h1>
+<div>
+  <button *ngIf="!selected" mat-raised-button color="primary" class="add-files-btn" (click)="addFile()">
+    Wybierz plik
+  </button>
+</div>
+
+<h4 mat-line *ngIf="selected">{{fileToUpload.name}}</h4>
+<mat-progress-bar *ngIf="progress" mode="determinate" [value]="progress | async"></mat-progress-bar>
+
+<!-- This are the actions of the dialog, containing the primary and the cancel button-->
+<mat-dialog-actions class="actions">
+  <button *ngIf="showCancelButton" mat-button mat-dialog-close>Anuluj</button>
+  <button *ngIf="selected" mat-raised-button color="primary" [disabled]="!canBeClosed" (click)="closeDialog()">{{primaryButtonText}}</button>
+</mat-dialog-actions>

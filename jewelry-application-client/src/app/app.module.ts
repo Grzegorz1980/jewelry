@@ -3,14 +3,27 @@ import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
+import {CommonModule} from '@angular/common';
+import {
+  MatButtonModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatGridListModule,
+  MatInputModule,
+  MatListModule,
+  MatPaginatorModule,
+  MatProgressBarModule,
+  MatSortModule,
+  MatTableModule
+} from '@angular/material';
 
 import {AppComponent} from './app.component';
-import {ImportFileComponent} from './components/import-file/import-file.component';
 import {PageNotFoundComponent} from "./not-found.component";
-import {MatFormFieldModule, MatGridListModule, MatInputModule, MatPaginatorModule, MatSortModule, MatTableModule,} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {JewelryListComponent} from './components/jewelry-list/jewelry-list.component';
 import {JewelryListService} from './services/jewelry-list/jewelry-list.service';
+import {ImportFileComponent} from './components/import-file/import-file.component';
+import {ImportFileDialogComponent} from './components/import-file-dialog/import-file-dialog.component';
 
 const appRoutes: Routes = [
   {path: 'import-file', component: ImportFileComponent},
@@ -32,8 +45,11 @@ const appRoutes: Routes = [
     AppComponent,
     ImportFileComponent,
     PageNotFoundComponent,
-    JewelryListComponent
+    JewelryListComponent,
+    ImportFileComponent,
+    ImportFileDialogComponent
   ],
+  entryComponents: [ImportFileDialogComponent],
   imports: [
     RouterModule.forRoot(
       appRoutes,
@@ -50,9 +66,10 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    CommonModule, MatButtonModule, MatDialogModule, MatListModule, HttpClientModule, BrowserAnimationsModule, MatProgressBarModule,
   ],
   providers: [
-              JewelryListService
+    JewelryListService
   ],
   bootstrap: [AppComponent]
 })

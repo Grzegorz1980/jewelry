@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ImportFileComponent } from './import-file.component';
+import { ImportFileDialogComponent } from './import-file-dialog.component';
 
 describe('ImportFileDialogComponent', () => {
-  let component: ImportFileComponent;
-  let fixture: ComponentFixture<ImportFileComponent>;
+  let component: ImportFileDialogComponent;
+  let fixture: ComponentFixture<ImportFileDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ImportFileComponent ]
+      declarations: [ ImportFileDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ImportFileComponent);
+    fixture = TestBed.createComponent(ImportFileDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

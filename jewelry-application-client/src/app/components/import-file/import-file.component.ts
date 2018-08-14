@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {MatDialog, MatDialogRef} from '@angular/material';
+import { UploadService } from '../../services/upload-file/upload.service';
+import { ImportFileDialogComponent } from '../import-file-dialog/import-file-dialog.component';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-import-file',
@@ -7,9 +11,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ImportFileComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog, public uploadService: UploadService) {}
 
-  ngOnInit() {
+  public openUploadDialog() {
+    let dialogRef = this.dialog.open(ImportFileDialogComponent, { width: '50%', height: '50%' });
   }
 
+  ngOnInit(): void {
+  }
 }

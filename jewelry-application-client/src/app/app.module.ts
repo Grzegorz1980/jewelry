@@ -21,8 +21,9 @@ import {AppComponent} from './app.component';
 import {PageNotFoundComponent} from "./not-found.component";
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {JewelryListComponent} from './components/jewelry-list/jewelry-list.component';
-import {JewelryListService} from './services/jewelry-list/jewelry-list.service';
+import {JewelryService} from './services/jewelry/jewelry.service';
 import {ImportFileDialogComponent} from './components/import-file-dialog/import-file-dialog.component';
+import { EditJewelDialogComponent } from './components/edit-jewel-dialog/edit-jewel-dialog.component';
 
 const appRoutes: Routes = [
   // {path: 'import-file', component: ImportFileComponent},
@@ -44,9 +45,10 @@ const appRoutes: Routes = [
     AppComponent,
     PageNotFoundComponent,
     JewelryListComponent,
-    ImportFileDialogComponent
+    ImportFileDialogComponent,
+    EditJewelDialogComponent
   ],
-  entryComponents: [ImportFileDialogComponent],
+  entryComponents: [ImportFileDialogComponent, EditJewelDialogComponent],
   imports: [
     RouterModule.forRoot(
       appRoutes,
@@ -66,7 +68,7 @@ const appRoutes: Routes = [
     CommonModule, MatButtonModule, MatDialogModule, MatListModule, HttpClientModule, BrowserAnimationsModule, MatProgressBarModule,
   ],
   providers: [
-    JewelryListService
+    JewelryService
   ],
   bootstrap: [AppComponent]
 })

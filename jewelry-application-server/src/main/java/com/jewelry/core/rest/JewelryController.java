@@ -2,13 +2,22 @@ package com.jewelry.core.rest;
 
 import com.jewelry.core.db.model.Jewel;
 import com.jewelry.core.rest.dto.JewelDTO;
+import com.jewelry.core.rest.dto.ServerResponse;
+import com.jewelry.core.rest.dto.ServerResponseDTO;
 import com.jewelry.core.rest.mapper.JewelryMapper;
 import com.jewelry.core.service.JewelryService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
@@ -18,6 +27,8 @@ import java.util.stream.Collectors;
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class JewelryController {
+
+    private static final Logger logger = LoggerFactory.getLogger(JewelryController.class);
 
     @Autowired
     private JewelryService jewelryService;
@@ -37,4 +48,13 @@ public class JewelryController {
         Jewel jewel = jewelryService.getJewel(id);
         return mapper.jewelToDTO(jewel);
     }
+
+    @PostMapping("/jewelry")
+    public ServerResponseDTO saveJewel(@RequestBody JewelDTO jewelDTO) {
+        logger.info("GOT POST. Jewel SKU=" + jewelDTO.getSku());
+        Jewel jewel = mapper.jewelFromDTO(jewelDTO);
+        jewelryService.saveJewel(jewel);
+        return new ServerResponseDTO(ServerResponse.OK, "OK");
+    }
+
 }

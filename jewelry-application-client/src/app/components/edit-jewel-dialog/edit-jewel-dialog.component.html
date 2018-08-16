@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Edycja. SKU: {{jewel.sku}}</h1>
+<mat-form-field>
+  <input matInput [(ngModel)]="jewel.name" placeholder="Nazwa:">
+</mat-form-field>
+  <br>
+<mat-form-field>
+  <input matInput [(ngModel)]="jewel.type" placeholder="Type:">
+</mat-form-field>
+<br>
+<h4 mat-line *ngIf="responded">Result: {{response.result}}</h4>
+<br>
+<button mat-raised-button (click)="save(jewel)">Zapisz</button>
+<button mat-raised-button (click)="closeDialog()">Anuluj</button>

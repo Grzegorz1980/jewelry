@@ -1,6 +1,6 @@
 package com.jewelry.core.rest;
 
-import com.jewelry.core.rest.dto.FileUploadResponseDTO;
+import com.jewelry.core.rest.dto.ServerResponseDTO;
 import com.jewelry.core.rest.dto.ServerResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,14 +21,14 @@ public class FileUploadController {
     private static final Logger logger = LoggerFactory.getLogger(FileUploadController.class);
 
     @PostMapping("/uploadFile")
-    public FileUploadResponseDTO uploadFile(@RequestParam("file") MultipartFile file) {
+    public ServerResponseDTO uploadFile(@RequestParam("file") MultipartFile file) {
         try {
             logger.info("Uploaded fileName=" + file.getOriginalFilename());
             BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream()));
             logger.info("First line = " + reader.readLine());
-            return new FileUploadResponseDTO(ServerResponse.OK, "Załadowany plik:" + file.getOriginalFilename());
+            return new ServerResponseDTO(ServerResponse.OK, "Załadowany plik:" + file.getOriginalFilename());
         } catch (IOException e) {
-            return new FileUploadResponseDTO(ServerResponse.ERROR, e.getMessage());
+            return new ServerResponseDTO(ServerResponse.ERROR, e.getMessage());
         }
     }
 }

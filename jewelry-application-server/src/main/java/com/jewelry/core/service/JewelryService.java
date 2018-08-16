@@ -23,4 +23,12 @@ public class JewelryService {
     public Jewel getJewel(Long id) {
         return jewelryRepository.getOne(id);
     }
+
+    @Transactional
+    public void saveJewel(Jewel jewel) {
+        Jewel originalJewel = jewelryRepository.findBySku(jewel.getSku());
+        originalJewel.setName(jewel.getName());
+        originalJewel.setType(jewel.getType());
+        jewelryRepository.save(originalJewel);
+    }
 }

@@ -1,8 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
 import {Jewel} from "../../models/jewel.model";
-import {JewelryListService} from "../../services/jewelry-list/jewelry-list.service";
+import {JewelryService} from "../../services/jewelry/jewelry.service";
 import {ImportFileDialogComponent} from "../import-file-dialog/import-file-dialog.component";
+import {EditJewelDialogComponent} from "../edit-jewel-dialog/edit-jewel-dialog.component"
 
 @Component({
   selector: 'app-jewelry-list',
@@ -14,7 +15,7 @@ export class JewelryListComponent implements OnInit {
   displayedColumns = ['businessId', 'sku', 'name', 'type', 'edit'];
   selectedId: number;
 
-  constructor(private jewelryListService: JewelryListService, public dialog: MatDialog) {
+  constructor(private jewelryListService: JewelryService, public dialog: MatDialog) {
   }
 
   @ViewChild(MatSort) sort: MatSort;
@@ -41,11 +42,12 @@ export class JewelryListComponent implements OnInit {
   }
 
   public openUploadDialog() {
-    let dialogRef = this.dialog.open(ImportFileDialogComponent, { width: '50%', height: '50%' });
+    this.dialog.open(ImportFileDialogComponent, { width: '50%', height: '50%' });
   }
 
   public onEdit(jewel: Jewel) {
-    console.log("Clicked. Jewel SKU=" + jewel.sku);
+    let dialogRef = this.dialog.open(EditJewelDialogComponent, { width: '50%', height: '50%' });
+    dialogRef.componentInstance.jewel = jewel;
   }
 
   public onDelete(jewel: Jewel) {

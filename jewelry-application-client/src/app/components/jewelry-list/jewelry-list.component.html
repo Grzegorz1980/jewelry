@@ -1,3 +1,5 @@
+<button mat-raised-button (click)="openUploadDialog()">Załaduj plik</button>
+
 <div>
   <mat-form-field>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
@@ -27,6 +29,15 @@
     <ng-container matColumnDef="type">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Typ </mat-header-cell>
       <mat-cell *matCellDef="let jewel"> {{jewel.type}}</mat-cell>
+    </ng-container>
+
+    <!-- Edit Button -->
+    <ng-container matColumnDef="edit">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Akcje </mat-header-cell>
+      <mat-cell *matCellDef="let jewel">
+        <button mat-button (click)="onEdit(jewel)">Edytuj</button>
+        <button mat-button (click)="onDelete(jewel)">Usun</button>
+      </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

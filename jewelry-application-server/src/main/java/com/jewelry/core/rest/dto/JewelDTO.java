@@ -16,5 +16,5 @@ public class JewelDTO implements Serializable {
     private String type;
     private String sku;
     private String name;
-    private List<String> images;
+    private List<JewelImageDTO> images;
 }

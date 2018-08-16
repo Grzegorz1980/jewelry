@@ -22,11 +22,10 @@ import {PageNotFoundComponent} from "./not-found.component";
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {JewelryListComponent} from './components/jewelry-list/jewelry-list.component';
 import {JewelryListService} from './services/jewelry-list/jewelry-list.service';
-import {ImportFileComponent} from './components/import-file/import-file.component';
 import {ImportFileDialogComponent} from './components/import-file-dialog/import-file-dialog.component';
 
 const appRoutes: Routes = [
-  {path: 'import-file', component: ImportFileComponent},
+  // {path: 'import-file', component: ImportFileComponent},
   {
     path: 'jewelry-list',
     component: JewelryListComponent,
@@ -43,10 +42,8 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    ImportFileComponent,
     PageNotFoundComponent,
     JewelryListComponent,
-    ImportFileComponent,
     ImportFileDialogComponent
   ],
   entryComponents: [ImportFileDialogComponent],

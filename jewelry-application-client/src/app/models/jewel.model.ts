@@ -3,5 +3,5 @@ export interface Jewel {
   name: string;
   sku: string;
   type: string;
-  images: string[];
+  images: object[];
 }

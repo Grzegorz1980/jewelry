@@ -1,11 +1,28 @@
-.mat-header-row, .mat-row {
-  min-width: 1000px;
+table {
+  width: 100%;
 }
 
-.mat-row.element-row:hover {
+tr.detail-row {
+  height: 0;
+}
+
+tr.element-row:not(.expanded-row):hover {
   background: #f5f5f5;
 }
 
-.mat-row.element-row:active {
+tr.element-row:not(.expanded-row):active {
   background: #efefef;
+}
+
+.element-row td {
+  border-bottom-width: 0;
+}
+
+.element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.row-detail {
+  float:left;
 }

@@ -4,11 +4,19 @@ import {Jewel} from "../../models/jewel.model";
 import {JewelryService} from "../../services/jewelry/jewelry.service";
 import {ImportFileDialogComponent} from "../import-file-dialog/import-file-dialog.component";
 import {EditJewelDialogComponent} from "../edit-jewel-dialog/edit-jewel-dialog.component"
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-jewelry-list',
   templateUrl: './jewelry-list.component.html',
-  styleUrls: ['./jewelry-list.component.css']
+  styleUrls: ['./jewelry-list.component.css'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0', display: 'none'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ])
+    ]
 })
 export class JewelryListComponent implements OnInit {
   dataSource = new MatTableDataSource<Jewel>();
@@ -35,10 +43,6 @@ export class JewelryListComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
-  }
-
-  onSelect(selectedId: number): void {
-    this.selectedId = selectedId;
   }
 
   public openUploadDialog() {

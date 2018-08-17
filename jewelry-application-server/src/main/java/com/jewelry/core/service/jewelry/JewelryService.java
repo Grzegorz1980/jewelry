@@ -1,4 +1,4 @@
-package com.jewelry.core.service;
+package com.jewelry.core.service.jewelry;
 
 import com.jewelry.core.db.api.JewelryRepository;
 import com.jewelry.core.db.model.Jewel;

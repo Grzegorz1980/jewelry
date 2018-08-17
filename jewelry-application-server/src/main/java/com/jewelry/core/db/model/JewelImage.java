@@ -11,15 +11,20 @@ import javax.persistence.ManyToOne;
 
 @Entity
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+
 public class JewelImage {
+
+    public JewelImage() {
+    }
+
+    public JewelImage(String imageLink) {
+        this.imageLink = imageLink;
+    }
 
     @Id
     @GeneratedValue
     private Long id;
 
-    @ManyToOne
-    private Jewel jewelId;
     private String imageLink;
+
 }

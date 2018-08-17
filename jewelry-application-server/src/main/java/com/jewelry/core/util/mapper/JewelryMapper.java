@@ -1,16 +1,13 @@
-package com.jewelry.core.rest.mapper;
+package com.jewelry.core.util.mapper;
 
 import com.jewelry.core.db.model.Jewel;
 import com.jewelry.core.db.model.JewelImage;
 import com.jewelry.core.rest.dto.JewelDTO;
 import com.jewelry.core.rest.dto.JewelImageDTO;
-import com.sun.scenario.effect.impl.sw.java.JSWInvertMaskPeer;
-import org.hibernate.validator.constraints.URL;
+import com.jewelry.core.service.importFile.CSVJewel;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
-
-import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface JewelryMapper {
@@ -23,4 +20,6 @@ public interface JewelryMapper {
     @Mapping(target = "images", ignore = true)
     Jewel jewelFromDTO(JewelDTO jewelDTO);
 
+    @Mapping(target = "images", ignore = true)
+    Jewel fromCSVJewel(CSVJewel csvJewel);
 }

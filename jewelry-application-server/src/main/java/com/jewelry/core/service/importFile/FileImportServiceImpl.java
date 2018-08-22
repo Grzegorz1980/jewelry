@@ -6,6 +6,7 @@ import com.jewelry.core.db.model.JewelImage;
 import com.jewelry.core.util.mapper.JewelryMapper;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
+import org.apache.commons.io.input.BOMInputStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -38,7 +39,7 @@ public class FileImportServiceImpl implements FileImportService {
     @Transactional
     public void importFile(InputStream inputStream) {
 
-        CsvToBean<CSVJewel> csvToBean = new CsvToBeanBuilder(new InputStreamReader(inputStream))
+        CsvToBean<CSVJewel> csvToBean = new CsvToBeanBuilder(new InputStreamReader(new BOMInputStream(inputStream)))
                 .withType(CSVJewel.class)
                 .withIgnoreLeadingWhiteSpace(true)
                 .withSeparator(';')

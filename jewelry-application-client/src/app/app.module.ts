@@ -1,8 +1,8 @@
 import {HttpClientModule} from '@angular/common/http';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
+import {Injectable, NgModule} from '@angular/core';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterModule, RouterStateSnapshot, Routes} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {
   MatButtonModule,
@@ -24,17 +24,36 @@ import {JewelryListComponent} from './components/jewelry-list/jewelry-list.compo
 import {JewelryService} from './services/jewelry/jewelry.service';
 import {ImportFileDialogComponent} from './components/import-file-dialog/import-file-dialog.component';
 import { EditJewelDialogComponent } from './components/edit-jewel-dialog/edit-jewel-dialog.component';
+import { LoginComponent } from './components/login/login.component';
+
+@Injectable()
+export class AuthGuard implements CanActivate {
+  constructor(private router : Router){}
+  canActivate(
+    next: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot):  boolean {
+    if (localStorage.getItem('userToken') != null)
+      return true;
+    this.router.navigate(['/login']);
+    return false;
+  }
+}
 
 const appRoutes: Routes = [
-  // {path: 'import-file', component: ImportFileComponent},
   {
     path: 'jewelry-list',
     component: JewelryListComponent,
-    data: {title: 'Jewelry'}
+    data: {title: 'Jewelry'},
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    data: {title: 'Login'}
   },
   {
     path: '',
-    redirectTo: '/jewelry-list',
+    redirectTo: '/login',
     pathMatch: 'full'
   },
   {path: '**', component: PageNotFoundComponent}
@@ -46,7 +65,8 @@ const appRoutes: Routes = [
     PageNotFoundComponent,
     JewelryListComponent,
     ImportFileDialogComponent,
-    EditJewelDialogComponent
+    EditJewelDialogComponent,
+    LoginComponent
   ],
   entryComponents: [ImportFileDialogComponent, EditJewelDialogComponent],
   imports: [
@@ -68,7 +88,8 @@ const appRoutes: Routes = [
     CommonModule, MatButtonModule, MatDialogModule, MatListModule, HttpClientModule, MatProgressBarModule,
   ],
   providers: [
-    JewelryService
+    JewelryService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

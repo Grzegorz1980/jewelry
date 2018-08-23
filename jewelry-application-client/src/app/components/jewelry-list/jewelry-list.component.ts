@@ -6,6 +6,8 @@ import {DownloadFileService} from "../../services/download-file/download-file.se
 import {ImportFileDialogComponent} from "../import-file-dialog/import-file-dialog.component";
 import {EditJewelDialogComponent} from "../edit-jewel-dialog/edit-jewel-dialog.component"
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {LoginService} from "../../services/login/login.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-jewelry-list',
@@ -24,7 +26,7 @@ export class JewelryListComponent implements OnInit {
   displayedColumns = ['businessId', 'sku', 'name', 'type', 'edit'];
   selectedId: number;
 
-  constructor(private jewelryListService: JewelryService, public dialog: MatDialog, private downloadFileService: DownloadFileService) {
+  constructor(private jewelryListService: JewelryService, public dialog: MatDialog, private downloadFileService: DownloadFileService, private loginService: LoginService, private router: Router) {
   }
 
   @ViewChild(MatSort) sort: MatSort;
@@ -61,5 +63,10 @@ export class JewelryListComponent implements OnInit {
 
   public onDelete(jewel: Jewel) {
     console.log("Deleted. Jewel SKU=" + jewel.sku);
+  }
+
+  public logout() {
+    this.loginService.logout();
+    this.router.navigate(['/login']);
   }
 }

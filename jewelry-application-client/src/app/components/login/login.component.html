@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Logowanie</h1>
+<mat-form-field>
+  <input matInput [(ngModel)]="username" placeholder="Nazwa uzytkownika:">
+</mat-form-field>
+<br>
+<mat-form-field>
+  <input matInput [(ngModel)]="password" placeholder="Haslo:">
+</mat-form-field>
+<br>
+<button mat-raised-button (click)="login(username, password)">Anuluj</button>

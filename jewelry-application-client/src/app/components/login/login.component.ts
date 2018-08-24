@@ -22,12 +22,10 @@ export class LoginComponent implements OnInit {
   login(username, password) {
     console.log("Logowane. Username=" + username);
     this.loginService.login(username, password).subscribe((data: any) => {
-      if (data.result === 'OK') {
-        localStorage.setItem('userToken', data.message);
+        console.log("Got token=" + data.access_token)
+        localStorage.setItem("token", data.access_token);
         this.router.navigate(['/jewelry-list']);
-      } else {
-        this.isLoginError = true;
       }
-    });
+    );
   }
 }

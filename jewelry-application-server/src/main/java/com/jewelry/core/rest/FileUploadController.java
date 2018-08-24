@@ -19,7 +19,6 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
 public class FileUploadController {
 
     private static final Logger logger = LoggerFactory.getLogger(FileUploadController.class);

@@ -21,7 +21,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
 public class GenerateXLSController {
 
     private static final Logger logger = LoggerFactory.getLogger(GenerateXLSController.class);

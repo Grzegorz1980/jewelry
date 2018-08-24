@@ -1,4 +1,4 @@
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {Injectable, NgModule} from '@angular/core';
@@ -25,6 +25,9 @@ import {JewelryService} from './services/jewelry/jewelry.service';
 import {ImportFileDialogComponent} from './components/import-file-dialog/import-file-dialog.component';
 import { EditJewelDialogComponent } from './components/edit-jewel-dialog/edit-jewel-dialog.component';
 import { LoginComponent } from './components/login/login.component';
+import {Observable, throwError} from "rxjs/index";
+import {catchError} from "rxjs/internal/operators";
+import {LoginService} from "./services/login/login.service";
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -32,10 +35,46 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot):  boolean {
-    if (localStorage.getItem('userToken') != null)
+    if (localStorage.getItem('token'))
       return true;
     this.router.navigate(['/login']);
     return false;
+  }
+}
+
+@Injectable()
+export class JwtInterceptor implements HttpInterceptor {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    // add authorization header with jwt token if available
+    let currentToken = localStorage.getItem('token');
+    console.log("JWT. Token=" + currentToken);
+    if (currentToken) {
+      request = request.clone({
+        setHeaders: {
+          Authorization: `Bearer ${currentToken}`
+        }
+      });
+    }
+
+    return next.handle(request);
+  }
+}
+
+@Injectable()
+export class ErrorInterceptor implements HttpInterceptor {
+  constructor(private loginService: LoginService) {}
+
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    return next.handle(request).pipe(catchError(err => {
+      if (err.status === 401) {
+        // auto logout if 401 response returned from api
+        this.loginService.logout();
+        location.reload(true);
+      }
+
+      const error = err.error.message || err.statusText;
+      return throwError(error);
+    }))
   }
 }
 
@@ -88,6 +127,8 @@ const appRoutes: Routes = [
     CommonModule, MatButtonModule, MatDialogModule, MatListModule, HttpClientModule, MatProgressBarModule,
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     JewelryService,
     AuthGuard
   ],

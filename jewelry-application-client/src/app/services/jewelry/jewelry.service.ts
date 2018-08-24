@@ -23,6 +23,6 @@ export class JewelryService {
 
   saveJewel(jewel: Jewel): Observable<ServerResponse> {
     console.log("Saving jewel. SKU=" + jewel.sku);
-    return this.http.post<ServerResponse>(this.serviceUrl, jewel).pipe();
+    return this.http.post<ServerResponse>(this.serviceUrl, jewel);
   }
 }

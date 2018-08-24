@@ -22,7 +22,7 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = {"http://localhost:4200", "http://localhost"})
 public class LoginController {
 
     private static final Logger logger = LoggerFactory.getLogger(LoginController.class);

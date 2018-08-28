@@ -2,10 +2,15 @@
 <mat-form-field>
   <input matInput [(ngModel)]="jewel.name" placeholder="Nazwa:">
 </mat-form-field>
-  <br>
+<br>
 <mat-form-field>
   <input matInput [(ngModel)]="jewel.type" placeholder="Type:">
 </mat-form-field>
+<br>
+<mat-form-field>
+  <input matInput [(ngModel)]="jewel.category" placeholder="Kategoria:">
+</mat-form-field>
+
 <br>
 <h4 mat-line *ngIf="responded">Result: {{response.result}}</h4>
 <br>

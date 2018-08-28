@@ -12,8 +12,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.Column;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -90,6 +92,22 @@ public class FileImportServiceImpl implements FileImportService {
         jewel.setName(csvJewel.getName());
         jewel.setType(csvJewel.getType());
         jewel.setSku(csvJewel.getSku());
+        jewel.setShortDescription(csvJewel.getShortDescription());
+        jewel.setDescription(csvJewel.getDescription());
+        jewel.setTaxClass(csvJewel.getTaxClass());
+        jewel.setInStorage(csvJewel.getInStorage());
+        jewel.setStorage(csvJewel.getStorage());
+        jewel.setWeight(csvJewel.getWeight());
+        jewel.setLength(csvJewel.getLength());
+        jewel.setWidth(csvJewel.getWidth());
+        jewel.setHeight(csvJewel.getHeight());
+        jewel.setPromoPrice(csvJewel.getPromoPrice());
+        jewel.setPrice(csvJewel.getPrice());
+        jewel.setCategory(csvJewel.getCategory());
+        jewel.setTags(csvJewel.getTags());
+        jewel.setAttribute1Name(csvJewel.getAttribute1Name());
+        jewel.setAttribute1Value(csvJewel.getAttribute1Value());
+
         jewel.getImages().clear();
         jewel.getImages().addAll(createImages(csvJewel.getImages()));
         return jewel;

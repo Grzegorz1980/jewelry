@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {ImportFileDialogComponent} from "../import-file-dialog/import-file-dialog.component";
-import {MatDialogRef} from "@angular/material";
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import {Jewel} from "../../models/jewel.model";
 import {JewelryService} from "../../services/jewelry/jewelry.service";
 import {ServerResponse} from "../../models/serverResponse.model";
@@ -12,8 +12,9 @@ import {ServerResponse} from "../../models/serverResponse.model";
 })
 export class EditJewelDialogComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<ImportFileDialogComponent>, public jewelryService: JewelryService) {
+  constructor(public dialogRef: MatDialogRef<ImportFileDialogComponent>, public jewelryService: JewelryService, @Inject(MAT_DIALOG_DATA) data) {
     dialogRef.disableClose = true;
+    this.jewel = data;
   }
 
   public jewel: Jewel;

@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
+import {MatDialog, MatDialogConfig, MatPaginator, MatSort, MatTableDataSource} from "@angular/material";
 import {Jewel} from "../../models/jewel.model";
 import {JewelryService} from "../../services/jewelry/jewelry.service";
 import {DownloadFileService} from "../../services/download-file/download-file.service";
@@ -24,6 +24,7 @@ import {Router} from "@angular/router";
 export class JewelryListComponent implements OnInit {
   dataSource = new MatTableDataSource<Jewel>();
   displayedColumns = ['businessId', 'sku', 'name', 'type', 'edit'];
+  expandedElement: Jewel;
   selectedId: number;
 
   constructor(private jewelryListService: JewelryService, public dialog: MatDialog, private downloadFileService: DownloadFileService, private loginService: LoginService, private router: Router) {
@@ -57,8 +58,13 @@ export class JewelryListComponent implements OnInit {
   }
 
   public onEdit(jewel: Jewel) {
-    let dialogRef = this.dialog.open(EditJewelDialogComponent, { width: '50%', height: '50%' });
-    dialogRef.componentInstance.jewel = jewel;
+    const config = new MatDialogConfig();
+    config.data = jewel;
+    config.width = '50%';
+    config.height = '80%';
+
+    this.dialog.open(EditJewelDialogComponent, config);
+
   }
 
   public onDelete(jewel: Jewel) {

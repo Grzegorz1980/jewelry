@@ -28,6 +28,7 @@ import { LoginComponent } from './components/login/login.component';
 import {Observable, throwError} from "rxjs/index";
 import {catchError} from "rxjs/internal/operators";
 import {LoginService} from "./services/login/login.service";
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -124,6 +125,7 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    FlexLayoutModule,
     CommonModule, MatButtonModule, MatDialogModule, MatListModule, HttpClientModule, MatProgressBarModule,
   ],
   providers: [

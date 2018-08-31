@@ -27,8 +27,16 @@ public class JewelryService {
     @Transactional
     public void saveJewel(Jewel jewel) {
         Jewel originalJewel = jewelryRepository.findBySku(jewel.getSku());
-        originalJewel.setName(jewel.getName());
-        originalJewel.setType(jewel.getType());
+        originalJewel.setShortDescriptionEdited(jewel.getShortDescriptionEdited());
+        originalJewel.setDescriptionEdited(jewel.getDescriptionEdited());
+        originalJewel.setWeightEdited(jewel.getWeightEdited());
+        originalJewel.setLengthEdited(jewel.getLengthEdited());
+        originalJewel.setWidthEdited(jewel.getWidthEdited());
+        originalJewel.setHeightEdited(jewel.getHeightEdited());
+        originalJewel.setPromoPriceEdited(jewel.getPromoPriceEdited());
+        originalJewel.setPriceEdited(jewel.getPriceEdited());
+        originalJewel.setCategoryEdited(jewel.getCategoryEdited());
+        originalJewel.setTagsEdited(jewel.getTagsEdited());
         jewelryRepository.save(originalJewel);
     }
 }

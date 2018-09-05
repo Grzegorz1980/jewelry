@@ -1,128 +1,145 @@
-<div class="editDialog">
-  <h1 mat-dialog-title>Edycja. SKU: {{jewel.sku}}</h1>
-  <label>Nazwa: {{jewel.name}}</label><br>
-  <label>Typ: {{jewel.type}}</label><br>
-  <label>Klasa podatkowa: {{jewel.taxClass}}</label><br>
-  <label>W magazynie?: {{jewel.inStorage}}</label><br>
-  <label>Magazyn: {{jewel.storage}}</label><br>
-  <label>Nazwa atrybutu 1: {{jewel.attribute1Name}}</label><br>
-  <label>Wartości atrybutu 1: {{jewel.attribute1Value}}</label><br>
+<div class="editDialog" style="background-color:#E6E6FA;">
+  <h1 mat-dialog-title align="center">Edycja. SKU: {{jewel.sku}}</h1>
+  <div fxLayout="row">
+    <div *ngFor="let image of jewel.images">
+      <img src="{{image.imageLink}}" height="200" width="200"/>
+    </div>
+    <div *ngIf="jewel.images.length == 0">
+      <mat-label>Brak obrazów</mat-label>
+    </div>
+  </div>
+  <br><br>
+  <mat-label>Nazwa: {{jewel.name}}</mat-label>
+  <br>
+  <mat-label>Typ: {{jewel.type}}</mat-label>
+  <br>
+  <mat-label>Klasa podatkowa: {{jewel.taxClass}}</mat-label>
+  <br>
+  <mat-label>W magazynie?: {{jewel.inStorage}}</mat-label>
+  <br>
+  <mat-label>Magazyn: {{jewel.storage}}</mat-label>
+  <br>
+  <mat-label>Nazwa atrybutu 1: {{jewel.attribute1Name}}</mat-label>
+  <br>
+  <mat-label>Wartości atrybutu 1: {{jewel.attribute1Value}}</mat-label>
+  <br>
 
   <div fxLayout="row" fxLayoutAlign="space-between center">
     <div>
-      <label>Krótki opis:</label><br>
-      <textarea matInput [(ngModel)]="jewel.shortDescription" readonly="true" style="border:dotted 2px black;">123</textarea>
+      <mat-label>Krótki opis:</mat-label>
+      <br>
+      <textarea matInput [(ngModel)]="jewel.shortDescription" readonly="true" style="border:solid 1px black;"></textarea>
     </div>
     <div>
-      <label>Krótki opis edytowalny:</label><br>
-      <textarea matInput [(ngModel)]="jewel.shortDescriptionEdited" style="border:dotted 2px black;"></textarea>
+      <mat-form-field>
+        <br>
+        <textarea matInput [(ngModel)]="jewel.shortDescriptionEdited" style="border:solid 1px black;" placeholder="Krótki opis edytowalny:"></textarea>
+      </mat-form-field>
     </div>
   </div>
   <br>
   <div fxLayout="row" fxLayoutAlign="space-between center">
     <div>
-      <label>Opis:</label><br>
-      <textarea matInput [(ngModel)]="jewel.description" readonly="true" style="border:dotted 2px black;">123</textarea>
+      <mat-label>Opis:</mat-label>
+      <br>
+      <textarea matInput [(ngModel)]="jewel.description" readonly="true" style="border:solid 1px black;"></textarea>
     </div>
     <div>
-      <label>Opis edytowalny:</label><br>
-      <textarea matInput [(ngModel)]="jewel.descriptionEdited" style="border:dotted 2px black;"></textarea>
+      <mat-form-field>
+        <br>
+        <textarea matInput [(ngModel)]="jewel.descriptionEdited" style="border:solid 1px black;" placeholder="Opis edytowalny:"></textarea>
+      </mat-form-field>
     </div>
   </div>
   <br>
-  <div fxLayout="row" fxLayoutAlign="space-between center">
+  <div fxLayout="row" fxLayoutAlign="space-between">
     <div>
-      <label>Waga (kg):{{jewel.weight}}</label>
+      <mat-label>Waga (kg): {{jewel.weight}}</mat-label>
     </div>
     <div>
-      <label>Waga (kg) edytowalna:</label>
       <mat-form-field>
-        <input matInput [(ngModel)]="jewel.weightEdited">
+        <input matInput [(ngModel)]="jewel.weightEdited" placeholder="Waga (kg) edytowalna:">
       </mat-form-field>
     </div>
   </div>
   <div fxLayout="row" fxLayoutAlign="space-between center">
     <div>
-      <label>Długość (cm):{{jewel.width}}</label>
+      <mat-label>Długość (cm): {{jewel.width}}</mat-label>
     </div>
     <div>
-      <label>Długość (cm) edytowalna:</label>
       <mat-form-field>
-        <input matInput [(ngModel)]="jewel.widthEdited">
+        <input matInput [(ngModel)]="jewel.widthEdited" placeholder="Długość (cm) edytowalna:">
       </mat-form-field>
     </div>
   </div>
   <div fxLayout="row" fxLayoutAlign="space-between center">
     <div>
-      <label>Szerokość (cm):{{jewel.length}}</label>
+      <mat-label>Szerokość (cm): {{jewel.length}}</mat-label>
     </div>
     <div>
-      <label>Szerokość (cm) edytowalna:</label>
       <mat-form-field>
-        <input matInput [(ngModel)]="jewel.lengthEdited">
+        <input matInput [(ngModel)]="jewel.lengthEdited" placeholder="Szerokość (cm) edytowalna:">
       </mat-form-field>
     </div>
   </div>
   <div fxLayout="row" fxLayoutAlign="space-between center">
     <div>
-      <label>Wysokość (cm):{{jewel.height}}</label>
+      <mat-label>Wysokość (cm): {{jewel.height}}</mat-label>
     </div>
     <div>
-      <label>Wysokość (cm) edytowalna:</label>
       <mat-form-field>
-        <input matInput [(ngModel)]="jewel.heightEdited">
+        <input matInput [(ngModel)]="jewel.heightEdited" placeholder="Wysokość (cm) edytowalna:">
       </mat-form-field>
     </div>
   </div>
   <div fxLayout="row" fxLayoutAlign="space-between center">
     <div>
-      <label>Cena promocyjna:{{jewel.promoPrice}}</label>
+      <mat-label>Cena promocyjna: {{jewel.promoPrice}}</mat-label>
     </div>
     <div>
-      <label>Cena promocyjna edytowalna:</label>
       <mat-form-field>
-        <input matInput [(ngModel)]="jewel.promoPriceEdited">
+        <input matInput [(ngModel)]="jewel.promoPriceEdited" placeholder="Cena promocyjna edytowalna:">
       </mat-form-field>
     </div>
   </div>
   <div fxLayout="row" fxLayoutAlign="space-between center">
     <div>
-      <label>Cena:{{jewel.price}}</label>
+      <mat-label>Cena: {{jewel.price}}</mat-label>
     </div>
     <div>
-      <label>Cena edytowalna:</label>
       <mat-form-field>
-        <input matInput [(ngModel)]="jewel.priceEdited">
+        <input matInput [(ngModel)]="jewel.priceEdited" placeholder="Cena edytowalna:">
       </mat-form-field>
     </div>
   </div>
   <div fxLayout="row" fxLayoutAlign="space-between center">
     <div>
-      <label>Kategorie:{{jewel.category}}</label>
+      <mat-label>Kategorie: {{jewel.category}}</mat-label>
     </div>
     <div>
-      <label>Kategorie edytowalna:</label>
       <mat-form-field>
-        <input matInput [(ngModel)]="jewel.categoryEdited">
+        <input matInput [(ngModel)]="jewel.categoryEdited" placeholder="Kategorie edytowalna:">
       </mat-form-field>
     </div>
   </div>
   <div fxLayout="row" fxLayoutAlign="space-between center">
     <div>
-      <label>Tagi:{{jewel.tags}}</label>
+      <mat-label>Tagi: {{jewel.tags}}</mat-label>
     </div>
     <div>
-      <label>Tagi edytowalna:</label>
       <mat-form-field>
-        <input matInput [(ngModel)]="jewel.tagsEdited">
+        <input matInput [(ngModel)]="jewel.tagsEdited" placeholder="Tagi edytowalna:">
       </mat-form-field>
     </div>
   </div>
+  <br>
+  <h4 mat-line *ngIf="responded">Result: {{response.result}}</h4>
+  <br>
+  <div align="center">
+    <button mat-raised-button="" (click)="save(jewel)" >Zapisz</button>
+    <button mat-raised-button="" (click)="closeDialog()">Anuluj</button>
+  </div>
+
 </div>
 
 
-<br>
-<h4 mat-line *ngIf="responded">Result: {{response.result}}</h4>
-<br>
-<button mat-raised-button (click)="save(jewel)">Zapisz</button>
-<button mat-raised-button (click)="closeDialog()">Anuluj</button>

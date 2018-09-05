@@ -23,7 +23,7 @@ import {Router} from "@angular/router";
 })
 export class JewelryListComponent implements OnInit {
   dataSource = new MatTableDataSource<Jewel>();
-  displayedColumns = ['businessId', 'sku', 'name', 'type', 'edit'];
+  displayedColumns = ['businessId', 'sku', 'name', 'price', 'promoPrice', 'edit'];
   expandedElement: Jewel;
   selectedId: number;
 

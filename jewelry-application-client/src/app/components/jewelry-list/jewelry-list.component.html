@@ -27,10 +27,16 @@
       <td mat-cell *matCellDef="let jewel"> {{jewel.name}}</td>
     </ng-container>
 
-    <!-- Type Column -->
-    <ng-container matColumnDef="type">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Typ</th>
-      <td mat-cell *matCellDef="let jewel"> {{jewel.type}}</td>
+    <!-- Price Column -->
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Cena</th>
+      <td mat-cell *matCellDef="let jewel"> {{jewel.price}}</td>
+    </ng-container>
+
+    <!-- Promo Price Column -->
+    <ng-container matColumnDef="promoPrice">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Cena promocyjna</th>
+      <td mat-cell *matCellDef="let jewel"> {{jewel.promoPrice}}</td>
     </ng-container>
 
     <!-- Edit Button -->
@@ -46,6 +52,9 @@
       <td mat-cell *matCellDef="let row" [attr.colspan]="displayedColumns.length">
         <div class="row-detail" [@detailExpand]="row == expandedElement ? 'expanded' : 'collapsed'" *ngFor="let image of row.images">
           <img src="{{image.imageLink}}" height="200" width="200"/>
+        </div>
+        <div class="row-detail" [@detailExpand]="row == expandedElement ? 'expanded' : 'collapsed'" *ngIf="row.images.length == 0">
+          <mat-label>Brak obrazów</mat-label>
         </div>
       </td>
     </ng-container>

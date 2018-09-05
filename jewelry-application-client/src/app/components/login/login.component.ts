@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginService} from "../../services/login/login.service";
 import {Router} from "@angular/router";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-login',
@@ -22,9 +23,13 @@ export class LoginComponent implements OnInit {
   login(username, password) {
     console.log("Logowane. Username=" + username);
     this.loginService.login(username, password).subscribe((data: any) => {
-        console.log("Got token=" + data.access_token)
+      this.isLoginError = false;
+      console.log("Got token=" + data.access_token)
         localStorage.setItem("token", data.access_token);
         this.router.navigate(['/jewelry-list']);
+      },
+      (err : HttpErrorResponse)=>{
+        this.isLoginError = true;
       }
     );
   }

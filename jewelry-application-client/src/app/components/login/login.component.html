@@ -7,4 +7,7 @@
   <input matInput [(ngModel)]="password" placeholder="Haslo:">
 </mat-form-field>
 <br>
+<div *ngIf="isLoginError" class="center error-message">
+  <i class="material-icons">error</i> Błędna nazwa użytkownika lub hasło.
+</div>
 <button mat-raised-button (click)="login(username, password)">Zaloguj</button>

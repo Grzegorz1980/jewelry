@@ -8,6 +8,7 @@ import {EditJewelDialogComponent} from "../edit-jewel-dialog/edit-jewel-dialog.c
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {LoginService} from "../../services/login/login.service";
 import {Router} from "@angular/router";
+import {ConfirmDialogComponent} from "../confirm-dialog/confirm-dialog.component";
 
 @Component({
   selector: 'app-jewelry-list',
@@ -64,11 +65,19 @@ export class JewelryListComponent implements OnInit {
     config.height = '80%';
 
     this.dialog.open(EditJewelDialogComponent, config);
-
   }
 
   public onDelete(jewel: Jewel) {
     console.log("Deleted. Jewel SKU=" + jewel.sku);
+
+    const config = new MatDialogConfig();
+    config.data = jewel;
+    config.width = '30%';
+    config.height = '25%';
+
+    this.dialog.open(ConfirmDialogComponent, config).afterClosed().subscribe(result => {
+      window.location.reload();
+    });
   }
 
   public logout() {

@@ -1,0 +1,12 @@
+<div class="confirmationDialog" style="background-color:#E6E6FA;">
+  <h1 mat-dialog-title align="center">Usuwanie. SKU: {{jewel.sku}}</h1>
+
+
+  <div align="center">
+    <mat-label>Czy na pewno chcesz usunąć wiersz?</mat-label>
+    <br><br><br>
+    <button mat-raised-button color="primary" (click)="delete(jewel.businessId)" >Usuń</button>
+    <button mat-raised-button color="primary" (click)="closeDialog()">Anuluj</button>
+  </div>
+
+</div>

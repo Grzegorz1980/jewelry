@@ -29,6 +29,7 @@ import {Observable, throwError} from "rxjs/index";
 import {catchError} from "rxjs/internal/operators";
 import {LoginService} from "./services/login/login.service";
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -106,9 +107,10 @@ const appRoutes: Routes = [
     JewelryListComponent,
     ImportFileDialogComponent,
     EditJewelDialogComponent,
-    LoginComponent
+    LoginComponent,
+    ConfirmDialogComponent
   ],
-  entryComponents: [ImportFileDialogComponent, EditJewelDialogComponent],
+  entryComponents: [ImportFileDialogComponent, EditJewelDialogComponent, ConfirmDialogComponent],
   imports: [
     RouterModule.forRoot(
       appRoutes,

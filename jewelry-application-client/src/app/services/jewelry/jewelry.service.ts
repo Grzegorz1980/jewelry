@@ -25,4 +25,8 @@ export class JewelryService {
     console.log("Saving jewel. SKU=" + jewel.sku);
     return this.http.post<ServerResponse>(this.serviceUrl, jewel);
   }
+
+  deleteJewel(id: number) {
+    return this.http.delete(this.serviceUrl+ "/" + id);
+  }
 }

@@ -4,13 +4,12 @@ import com.jewelry.core.db.model.Jewel;
 import com.jewelry.core.rest.dto.JewelDTO;
 import com.jewelry.core.rest.dto.ServerResponse;
 import com.jewelry.core.rest.dto.ServerResponseDTO;
-import com.jewelry.core.util.mapper.JewelryMapper;
 import com.jewelry.core.service.jewelry.JewelryService;
+import com.jewelry.core.util.mapper.JewelryMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,6 +48,13 @@ public class JewelryController {
         logger.info("GOT POST. Jewel SKU=" + jewelDTO.getSku());
         Jewel jewel = mapper.jewelFromDTO(jewelDTO);
         jewelryService.saveJewel(jewel);
+        return new ServerResponseDTO(ServerResponse.OK, "OK");
+    }
+
+    @DeleteMapping("/jewelry/{id}")
+    public ServerResponseDTO deleteJewel(@PathVariable Integer id) {
+        logger.info("Deleting Jewel ID=" + id);
+        jewelryService.deleteJewel(id);
         return new ServerResponseDTO(ServerResponse.OK, "OK");
     }
 

@@ -39,4 +39,9 @@ public class JewelryService {
         originalJewel.setTagsEdited(jewel.getTagsEdited());
         jewelryRepository.save(originalJewel);
     }
+
+    @Transactional
+    public void deleteJewel(Integer id) {
+        jewelryRepository.deleteByBusinessId(id);
+    }
 }

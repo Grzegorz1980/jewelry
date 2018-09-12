@@ -9,4 +9,6 @@ import org.springframework.stereotype.Component;
 public interface JewelryRepository extends JpaRepository<Jewel, Long> {
 
     public Jewel findBySku(String sku);
+
+    public void deleteByBusinessId(Integer id);
 }

@@ -12,7 +12,7 @@ import {ServerResponse} from "../../models/serverResponse.model";
 })
 export class EditJewelDialogComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<ImportFileDialogComponent>, public jewelryService: JewelryService, @Inject(MAT_DIALOG_DATA) data) {
+  constructor(public dialogRef: MatDialogRef<EditJewelDialogComponent>, public jewelryService: JewelryService, @Inject(MAT_DIALOG_DATA) data) {
     dialogRef.disableClose = true;
     this.jewel = data;
   }

@@ -12,7 +12,7 @@ import {Jewel} from "../../models/jewel.model";
 })
 export class ConfirmDialogComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<ImportFileDialogComponent>, public jewelryService: JewelryService, @Inject(MAT_DIALOG_DATA) data) {
+  constructor(public dialogRef: MatDialogRef<ConfirmDialogComponent>, public jewelryService: JewelryService, @Inject(MAT_DIALOG_DATA) data) {
     dialogRef.disableClose = true;
     this.jewel = data;
   }

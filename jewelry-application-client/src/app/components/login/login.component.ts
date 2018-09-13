@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
       this.isLoginError = false;
       console.log("Got token=" + data.access_token)
         localStorage.setItem("token", data.access_token);
+        localStorage.setItem("username", username);
         this.router.navigate(['/jewelry-list']);
       },
       (err : HttpErrorResponse)=>{

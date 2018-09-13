@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {headersToString} from "selenium-webdriver/http";
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +19,6 @@ export class LoginService {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('username');
   }
 }

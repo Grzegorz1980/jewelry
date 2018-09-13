@@ -9,6 +9,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import {LoginService} from "../../services/login/login.service";
 import {Router} from "@angular/router";
 import {ConfirmDialogComponent} from "../confirm-dialog/confirm-dialog.component";
+import {UpdatePasswordDialogComponent} from "../update-password/update-password-dialog.component";
 
 @Component({
   selector: 'app-jewelry-list',
@@ -83,5 +84,15 @@ export class JewelryListComponent implements OnInit {
   public logout() {
     this.loginService.logout();
     this.router.navigate(['/login']);
+  }
+
+  public updatePassword() {
+    const config = new MatDialogConfig();
+    config.width = '50%';
+    config.height = '80%';
+    config.data = localStorage.getItem('username');
+
+    this.dialog.open(UpdatePasswordDialogComponent, config);
+
   }
 }

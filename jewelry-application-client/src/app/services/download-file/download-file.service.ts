@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {saveAs} from 'file-saver/FileSaver';
+import {AppSettings} from "../app-settings";
 
-const url = 'http://localhost:8080/generateFile';
+const url = AppSettings.API_ENDPOINT + 'generateFile';
 
 @Injectable({
   providedIn: 'root'

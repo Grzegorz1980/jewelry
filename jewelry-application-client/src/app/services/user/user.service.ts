@@ -3,13 +3,14 @@ import {Jewel} from "../../models/jewel.model";
 import {HttpClient} from "@angular/common/http";
 import {ServerResponse} from "../../models/serverResponse.model";
 import {Observable} from "rxjs/index";
+import {AppSettings} from "../app-settings";
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private serviceUrl = 'http://localhost:8080/user/';
+  private serviceUrl = AppSettings.API_ENDPOINT + 'user/';
 
   constructor(private http: HttpClient) { }
 

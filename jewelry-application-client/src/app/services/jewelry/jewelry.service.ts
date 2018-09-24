@@ -3,13 +3,14 @@ import {HttpClient, HttpRequest, HttpResponse} from "@angular/common/http";
 import {Jewel} from "../../models/jewel.model";
 import {Observable} from "rxjs/index";
 import {ServerResponse} from "../../models/serverResponse.model";
+import {AppSettings} from "../app-settings";
 
 @Injectable({
   providedIn: 'root'
 })
 export class JewelryService {
 
-  private serviceUrl = 'http://localhost:8080/jewelry';
+  private serviceUrl = AppSettings.API_ENDPOINT + 'jewelry';
 
   constructor(private http: HttpClient) { }
 

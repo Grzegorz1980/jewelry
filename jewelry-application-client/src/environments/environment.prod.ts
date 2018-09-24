@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  appUrl: 'http://jareczek3.nazwa.pl:8080/'
 };

@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpEventType, HttpRequest, HttpResponse} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
+import {AppSettings} from "../app-settings";
 
-const url = 'http://localhost:8080/uploadFile';
-
+const url = AppSettings.API_ENDPOINT + 'uploadFile';
 
 @Injectable({
   providedIn: 'root'

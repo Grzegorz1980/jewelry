@@ -1,12 +1,13 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {AppSettings} from "../app-settings";
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  private serviceUrl = 'http://localhost:8080/oauth/token';
+  private serviceUrl = AppSettings.API_ENDPOINT + 'oauth/token';
 
   constructor(private http: HttpClient) {
   }

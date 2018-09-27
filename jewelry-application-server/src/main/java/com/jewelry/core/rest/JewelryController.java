@@ -5,7 +5,7 @@ import com.jewelry.core.rest.dto.JewelDTO;
 import com.jewelry.core.rest.dto.ServerResponse;
 import com.jewelry.core.rest.dto.ServerResponseDTO;
 import com.jewelry.core.service.jewelry.JewelryService;
-import com.jewelry.core.util.mapper.JewelryMapper;
+import com.jewelry.core.util.mapper.GeneralMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +28,7 @@ public class JewelryController {
     private JewelryService jewelryService;
 
     @Autowired
-    private JewelryMapper mapper;
+    private GeneralMapper mapper;
 
     @GetMapping("/jewelry/list")
     public Collection<JewelDTO> getJewelry() {

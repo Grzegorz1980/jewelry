@@ -10,6 +10,9 @@ import {LoginService} from "../../services/login/login.service";
 import {Router} from "@angular/router";
 import {ConfirmDialogComponent} from "../confirm-dialog/confirm-dialog.component";
 import {UpdatePasswordDialogComponent} from "../update-password/update-password-dialog.component";
+import {Settings} from "../../models/settings.model";
+import {SettingsService} from "../../services/settings/settings.service";
+import {SettingsDialogComponent} from "../settings-dialog/settings-dialog.component";
 
 @Component({
   selector: 'app-jewelry-list',
@@ -27,9 +30,9 @@ export class JewelryListComponent implements OnInit {
   dataSource = new MatTableDataSource<Jewel>();
   displayedColumns = ['businessId', 'sku', 'name', 'price', 'promoPrice', 'edit'];
   expandedElement: Jewel;
-  selectedId: number;
+  settings: Settings;
 
-  constructor(private jewelryListService: JewelryService, public dialog: MatDialog, private downloadFileService: DownloadFileService, private loginService: LoginService, private router: Router) {
+  constructor(private jewelryListService: JewelryService, private settingsService: SettingsService,  public dialog: MatDialog, private downloadFileService: DownloadFileService, private loginService: LoginService, private router: Router) {
   }
 
   @ViewChild(MatSort) sort: MatSort;
@@ -38,6 +41,9 @@ export class JewelryListComponent implements OnInit {
   ngOnInit() {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
+    this.settingsService.getSettings().subscribe(data => {
+      this.settings = data;
+    })
     this.jewelryListService.getJewelry().subscribe(data => {
       this.dataSource.data = data;
     })
@@ -52,7 +58,9 @@ export class JewelryListComponent implements OnInit {
   }
 
   public openUploadDialog() {
-    this.dialog.open(ImportFileDialogComponent, { width: '50%', height: '50%' });
+    this.dialog.open(ImportFileDialogComponent, { width: '50%', height: '50%' }).afterClosed().subscribe(result => {
+      window.location.reload();
+    });
   }
 
   public generateFile() {
@@ -65,7 +73,9 @@ export class JewelryListComponent implements OnInit {
     config.width = '50%';
     config.height = '80%';
 
-    this.dialog.open(EditJewelDialogComponent, config);
+    this.dialog.open(EditJewelDialogComponent, config).afterClosed().subscribe(result => {
+      window.location.reload();
+    });
   }
 
   public onDelete(jewel: Jewel) {
@@ -93,6 +103,13 @@ export class JewelryListComponent implements OnInit {
     config.data = localStorage.getItem('username');
 
     this.dialog.open(UpdatePasswordDialogComponent, config);
+  }
 
+  public updateSettings() {
+    const config = new MatDialogConfig();
+    config.data = this.settings;
+    config.width = '50%';
+    config.height = '80%';
+    this.dialog.open(SettingsDialogComponent, config);
   }
 }

@@ -1,0 +1,24 @@
+<div class="settingsDialog" style="background-color:#E6E6FA;">
+  <h1 mat-dialog-title align="center">Zmiana parametrów globalnych</h1>
+
+  <div fxLayout="column" fxLayoutAlign="space-between">
+    <mat-form-field>
+      <br>
+      <input matInput [(ngModel)]="settings.usdRate" placeholder="Kurs USD">
+    </mat-form-field>
+    <mat-form-field>
+      <br>
+      <input matInput [(ngModel)]="settings.regularRate" placeholder="Marża normalna">
+    </mat-form-field>
+    <mat-form-field>
+      <br>
+      <input matInput [(ngModel)]="settings.promoRate" placeholder="Marża promocyjna">
+    </mat-form-field>
+  </div>
+
+  <div align="center">
+    <button mat-raised-button color="primary" (click)="saveSettings()" >Potwierdź</button>
+    <button mat-raised-button color="primary" (click)="closeDialog()">Anuluj</button>
+  </div>
+
+</div>

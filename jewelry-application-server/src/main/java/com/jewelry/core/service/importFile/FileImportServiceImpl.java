@@ -3,7 +3,7 @@ package com.jewelry.core.service.importFile;
 import com.jewelry.core.db.api.JewelryRepository;
 import com.jewelry.core.db.model.Jewel;
 import com.jewelry.core.db.model.JewelImage;
-import com.jewelry.core.util.mapper.JewelryMapper;
+import com.jewelry.core.util.mapper.GeneralMapper;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.apache.commons.io.input.BOMInputStream;
@@ -12,10 +12,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.Column;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -35,7 +33,7 @@ public class FileImportServiceImpl implements FileImportService {
     private JewelryRepository jewelryRepository;
 
     @Autowired
-    private JewelryMapper mapper;
+    private GeneralMapper mapper;
 
     @Override
     @Transactional

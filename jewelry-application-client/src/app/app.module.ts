@@ -32,6 +32,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { UpdatePasswordDialogComponent } from './components/update-password/update-password-dialog.component';
 import {UserService} from "./services/user/user.service";
+import { SettingsDialogComponent } from './components/settings-dialog/settings-dialog.component';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -111,9 +112,10 @@ const appRoutes: Routes = [
     EditJewelDialogComponent,
     LoginComponent,
     ConfirmDialogComponent,
-    UpdatePasswordDialogComponent
+    UpdatePasswordDialogComponent,
+    SettingsDialogComponent
   ],
-  entryComponents: [ImportFileDialogComponent, EditJewelDialogComponent, ConfirmDialogComponent, UpdatePasswordDialogComponent],
+  entryComponents: [ImportFileDialogComponent, EditJewelDialogComponent, ConfirmDialogComponent, UpdatePasswordDialogComponent, SettingsDialogComponent],
   imports: [
     RouterModule.forRoot(
       appRoutes,

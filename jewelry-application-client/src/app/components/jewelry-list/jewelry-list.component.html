@@ -1,7 +1,20 @@
-<button mat-raised-button (click)="openUploadDialog()">Załaduj plik</button>
-<button mat-raised-button (click)="generateFile()">Wygeneruj XLS</button>
-<button mat-raised-button (click)="updatePassword()">Zmień hasło</button>
-<button mat-raised-button (click)="logout()">Wyloguj</button>
+<div fxLayout="row" fxLayoutAlign="start">
+  <div fxLayout="column" fxLayoutAlign="flex-start">
+    <mat-label>Kurs USD: {{settings.usdRate}}</mat-label>
+    <br>
+    <mat-label>Marża normalna: {{settings.regularRate}}</mat-label>
+    <br>
+    <mat-label>Marża promocyjna: {{settings.promoRate}}</mat-label>
+    <br>
+  </div>
+</div>
+<div fxLayout="row" fxLayoutAlign="center">
+  <button mat-raised-button (click)="openUploadDialog()">Załaduj plik</button>
+  <button mat-raised-button (click)="generateFile()">Wygeneruj XLS</button>
+  <button mat-raised-button (click)="updatePassword()">Zmień hasło</button>
+  <button mat-raised-button (click)="updateSettings()">Zmień ustawienia</button>
+  <button mat-raised-button (click)="logout()">Wyloguj</button>
+</div>
 
 <div>
   <mat-form-field>

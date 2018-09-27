@@ -1,13 +1,15 @@
 <h1 mat-dialog-title>Logowanie</h1>
-<mat-form-field>
-  <input matInput [(ngModel)]="username" placeholder="Nazwa uzytkownika:">
-</mat-form-field>
-<br>
-<mat-form-field>
-  <input matInput [(ngModel)]="password" placeholder="Haslo:" type="password">
-</mat-form-field>
-<br>
-<div *ngIf="isLoginError" class="center error-message">
-  <i class="material-icons">error</i> Błędna nazwa użytkownika lub hasło.
-</div>
-<button mat-raised-button (click)="login(username, password)">Zaloguj</button>
+<form (ngSubmit)="login(username, password)">
+  <mat-form-field>
+    <input matInput [(ngModel)]="username" name="username" placeholder="Nazwa uzytkownika:">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput [(ngModel)]="password" name="password" placeholder="Haslo:" type="password">
+  </mat-form-field>
+  <br>
+  <div *ngIf="isLoginError" class="center error-message">
+    <i class="material-icons">error</i> Błędna nazwa użytkownika lub hasło.
+  </div>
+  <button mat-raised-button (click)="login(username, password)">Zaloguj</button>
+</form>

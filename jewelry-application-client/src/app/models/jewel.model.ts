@@ -19,10 +19,9 @@ export interface Jewel {
   widthEdited: number;
   height: number;
   heightEdited: number;
-  promoPrice: number;
-  promoPriceEdited: number;
-  price: number;
+  priceUsd: number;
   priceEdited: number;
+  promoPriceEdited: number;
   category: string;
   categoryEdited: string;
   tags: string;

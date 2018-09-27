@@ -4,6 +4,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import {Jewel} from "../../models/jewel.model";
 import {JewelryService} from "../../services/jewelry/jewelry.service";
 import {ServerResponse} from "../../models/serverResponse.model";
+import {Settings} from "../../models/settings.model";
 
 @Component({
   selector: 'app-edit-jewel-dialog',
@@ -14,10 +15,12 @@ export class EditJewelDialogComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<EditJewelDialogComponent>, public jewelryService: JewelryService, @Inject(MAT_DIALOG_DATA) data) {
     dialogRef.disableClose = true;
-    this.jewel = data;
+    this.jewel = data[0];
+    this.settings = data[1];
   }
 
   public jewel: Jewel;
+  public settings: Settings;
   public response: ServerResponse;
   public responded = false;
 

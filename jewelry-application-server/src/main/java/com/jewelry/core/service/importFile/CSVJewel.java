@@ -47,12 +47,6 @@ public class CSVJewel {
     @CsvBindByName(column = "Wysokość (cm)")
     private BigDecimal height;
 
-    @CsvBindByName(column = "Cena promocyjna")
-    private BigDecimal promoPrice;
-
-    @CsvBindByName(column = "Cena")
-    private BigDecimal price;
-
     @CsvBindByName(column = "Kategorie")
     private String category;
 

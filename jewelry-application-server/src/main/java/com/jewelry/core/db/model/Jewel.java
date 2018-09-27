@@ -21,6 +21,8 @@ import java.util.List;
 @AllArgsConstructor
 public class Jewel {
 
+    public static final int GLOBAL_LENGTH = 2048;
+
     @Id
     @GeneratedValue
     private Long id;
@@ -32,13 +34,13 @@ public class Jewel {
     private String name;
     private String nameEdited;
 
-    @Column(length = 3072)
+    @Column(length = GLOBAL_LENGTH)
     private String shortDescription;
-    @Column(length = 3072)
+    @Column(length = GLOBAL_LENGTH)
     private String shortDescriptionEdited;
-    @Column(length = 3072)
+    @Column(length = GLOBAL_LENGTH)
     private String description;
-    @Column(length = 3072)
+    @Column(length = GLOBAL_LENGTH)
     private String descriptionEdited;
     private String taxClass;
     private String inStorage;
@@ -51,10 +53,9 @@ public class Jewel {
     private BigDecimal widthEdited;
     private BigDecimal height;
     private BigDecimal heightEdited;
-    private BigDecimal promoPrice;
-    private BigDecimal promoPriceEdited;
-    private BigDecimal price;
+    private BigDecimal priceUsd;
     private BigDecimal priceEdited;
+    private BigDecimal promoPriceEdited;
     private String category;
     private String categoryEdited;
     private String tags;

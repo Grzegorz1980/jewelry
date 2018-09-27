@@ -35,6 +35,7 @@ public class JewelryService {
         originalJewel.setHeightEdited(jewel.getHeightEdited());
         originalJewel.setPromoPriceEdited(jewel.getPromoPriceEdited());
         originalJewel.setPriceEdited(jewel.getPriceEdited());
+        originalJewel.setPriceUsd(jewel.getPriceUsd());
         originalJewel.setCategoryEdited(jewel.getCategoryEdited());
         originalJewel.setTagsEdited(jewel.getTagsEdited());
         jewelryRepository.save(originalJewel);

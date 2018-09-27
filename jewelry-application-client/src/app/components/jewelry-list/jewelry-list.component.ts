@@ -28,9 +28,9 @@ import {SettingsDialogComponent} from "../settings-dialog/settings-dialog.compon
 })
 export class JewelryListComponent implements OnInit {
   dataSource = new MatTableDataSource<Jewel>();
-  displayedColumns = ['businessId', 'sku', 'name', 'price', 'promoPrice', 'edit'];
+  displayedColumns = ['businessId', 'sku', 'name', 'priceUsd', 'pricePln', 'priceSugested', 'price', 'promoPriceSugested', 'promoPrice', 'edit'];
   expandedElement: Jewel;
-  settings: Settings;
+  public settings: Settings;
 
   constructor(private jewelryListService: JewelryService, private settingsService: SettingsService,  public dialog: MatDialog, private downloadFileService: DownloadFileService, private loginService: LoginService, private router: Router) {
   }
@@ -69,13 +69,11 @@ export class JewelryListComponent implements OnInit {
 
   public onEdit(jewel: Jewel) {
     const config = new MatDialogConfig();
-    config.data = jewel;
+    config.data = [jewel, this.settings];
     config.width = '50%';
     config.height = '80%';
 
-    this.dialog.open(EditJewelDialogComponent, config).afterClosed().subscribe(result => {
-      window.location.reload();
-    });
+    this.dialog.open(EditJewelDialogComponent, config);
   }
 
   public onDelete(jewel: Jewel) {

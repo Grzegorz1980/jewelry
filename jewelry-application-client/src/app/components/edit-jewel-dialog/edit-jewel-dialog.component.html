@@ -94,26 +94,6 @@
   </div>
   <div fxLayout="row" fxLayoutAlign="space-between center">
     <div>
-      <mat-label>Cena promocyjna: {{jewel.promoPrice}}</mat-label>
-    </div>
-    <div>
-      <mat-form-field>
-        <input matInput [(ngModel)]="jewel.promoPriceEdited" placeholder="Cena promocyjna edytowalna:">
-      </mat-form-field>
-    </div>
-  </div>
-  <div fxLayout="row" fxLayoutAlign="space-between center">
-    <div>
-      <mat-label>Cena: {{jewel.price}}</mat-label>
-    </div>
-    <div>
-      <mat-form-field>
-        <input matInput [(ngModel)]="jewel.priceEdited" placeholder="Cena edytowalna:">
-      </mat-form-field>
-    </div>
-  </div>
-  <div fxLayout="row" fxLayoutAlign="space-between center">
-    <div>
       <mat-label>Kategorie: {{jewel.category}}</mat-label>
     </div>
     <div>
@@ -132,11 +112,98 @@
       </mat-form-field>
     </div>
   </div>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div>
+      <mat-label>Cena PLN: {{jewel.priceUsd * settings.usdRate|currency:'PLN '}}</mat-label>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput [(ngModel)]="jewel.priceUsd" placeholder="Cena USD:">
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="regular" style="background-color:#a9d08e;">
+    <form label="Cena regularna" id="regular">
+      <div>
+        <mat-label>Cena regularna</mat-label>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div>
+          <mat-label>Cena sugerowana: {{jewel.priceUsd * settings.usdRate * ((settings.regularRate + 100) / 100)|currency:'PLN '}}</mat-label>
+        </div>
+        <div>
+          <mat-form-field>
+            <input matInput [(ngModel)]="jewel.priceEdited" placeholder="Cena regularna edytowalna:" name="priceEdited">
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxLayout="column" fxLayoutAlign="space-between center">
+          <mat-label>Cena bez VAT:</mat-label>
+          <mat-label>{{jewel.priceEdited-(jewel.priceEdited/123*23)|currency:'PLN '}}</mat-label>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="space-between center">
+          <mat-label>VAT 23%:</mat-label>
+          <mat-label>{{jewel.priceEdited/123*23|currency:'PLN '}}</mat-label>
+        </div>
+      </div>
+      <br>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxLayout="column" fxLayoutAlign="space-between center">
+          <mat-label>Zysk:</mat-label>
+          <mat-label>{{(jewel.priceEdited-(jewel.priceEdited/123*23) - (jewel.priceUsd * settings.usdRate))|currency:'PLN '}}</mat-label>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="space-between center">
+          <mat-label>Zysk%:</mat-label>
+          <mat-label>{{(jewel.priceEdited-(jewel.priceEdited/123*23) - (jewel.priceUsd * settings.usdRate)) / (jewel.priceUsd * settings.usdRate)|percent}}</mat-label>
+        </div>
+      </div>
+    </form>
+  </div>
+  <br><br>
+  <div class="regular" style="background-color:#ffac9d;">
+    <form label="Cena promocyjna" id="promo">
+      <div>
+        <mat-label>Cena promocyjna</mat-label>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div>
+          <mat-label>Cena promocyjna sugerowana: {{jewel.priceUsd * settings.usdRate * ((settings.promoRate + 100) / 100)|currency:'PLN '}}</mat-label>
+        </div>
+        <div>
+          <mat-form-field>
+            <input matInput [(ngModel)]="jewel.promoPriceEdited" placeholder="Cena promocyjna edytowalna:" name="priceEdited">
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxLayout="column" fxLayoutAlign="space-between center">
+          <mat-label>Cena bez VAT:</mat-label>
+          <mat-label>{{jewel.promoPriceEdited-(jewel.promoPriceEdited/123*23)|currency:'PLN '}}</mat-label>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="space-between center">
+          <mat-label>VAT 23%:</mat-label>
+          <mat-label>{{jewel.promoPriceEdited/123*23|currency:'PLN '}}</mat-label>
+        </div>
+      </div>
+      <br>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxLayout="column" fxLayoutAlign="space-between center">
+          <mat-label>Zysk:</mat-label>
+          <mat-label>{{(jewel.promoPriceEdited-(jewel.promoPriceEdited/123*23) - (jewel.priceUsd * settings.usdRate))|currency:'PLN '}}</mat-label>
+        </div>
+        <div fxLayout="column" fxLayoutAlign="space-between center">
+          <mat-label>Zysk%:</mat-label>
+          <mat-label>{{(jewel.promoPriceEdited-(jewel.promoPriceEdited/123*23) - (jewel.priceUsd * settings.usdRate)) / (jewel.priceUsd * settings.usdRate)|percent}}</mat-label>
+        </div>
+      </div>
+    </form>
+  </div>
   <br>
   <h4 mat-line *ngIf="responded">Result: {{response.result}}</h4>
   <br>
   <div align="center">
-    <button mat-raised-button color="primary" (click)="save(jewel)" >Zapisz</button>
+    <button mat-raised-button color="primary" (click)="save(jewel)">Zapisz</button>
     <button mat-raised-button color="primary" (click)="closeDialog()">Anuluj</button>
   </div>
 

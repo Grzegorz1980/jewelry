@@ -34,10 +34,9 @@ public class JewelDTO implements Serializable {
     private BigDecimal widthEdited;
     private BigDecimal height;
     private BigDecimal heightEdited;
-    private BigDecimal promoPrice;
-    private BigDecimal promoPriceEdited;
-    private BigDecimal price;
+    private BigDecimal priceUsd;
     private BigDecimal priceEdited;
+    private BigDecimal promoPriceEdited;
     private String category;
     private String categoryEdited;
     private String tags;

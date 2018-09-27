@@ -71,6 +71,12 @@ public class FileImportServiceImpl implements FileImportService {
     private Jewel convertNewCsvJewel(CSVJewel csvJewel) {
         Jewel jewel = mapper.fromCSVJewel(csvJewel);
         jewel.getImages().addAll(createImages(csvJewel.getImages()));
+        if (jewel.getShortDescription() != null && jewel.getShortDescription().length() > Jewel.GLOBAL_LENGTH) {
+            jewel.setShortDescription(jewel.getShortDescription().substring(0, Jewel.GLOBAL_LENGTH - 1));
+        }
+        if (jewel.getDescription() != null && jewel.getDescription().length() > Jewel.GLOBAL_LENGTH) {
+            jewel.setDescription(jewel.getDescription().substring(0, Jewel.GLOBAL_LENGTH - 1));
+        }
         return jewel;
     }
 
@@ -90,8 +96,20 @@ public class FileImportServiceImpl implements FileImportService {
         jewel.setName(csvJewel.getName());
         jewel.setType(csvJewel.getType());
         jewel.setSku(csvJewel.getSku());
-        jewel.setShortDescription(csvJewel.getShortDescription());
-        jewel.setDescription(csvJewel.getDescription());
+        if (csvJewel.getShortDescription() != null) {
+            String shortDescription = csvJewel.getShortDescription().trim();
+            if (shortDescription.length() > Jewel.GLOBAL_LENGTH) {
+                shortDescription = shortDescription.substring(0, Jewel.GLOBAL_LENGTH - 1);
+            }
+            jewel.setShortDescription(shortDescription);
+        }
+        if (csvJewel.getDescription() != null) {
+            String description = csvJewel.getDescription().trim();
+            if (description.length() > Jewel.GLOBAL_LENGTH) {
+                description = description.substring(0, Jewel.GLOBAL_LENGTH - 1);
+            }
+            jewel.setDescription(description);
+        }
         jewel.setTaxClass(csvJewel.getTaxClass());
         jewel.setInStorage(csvJewel.getInStorage());
         jewel.setStorage(csvJewel.getStorage());
@@ -99,8 +117,6 @@ public class FileImportServiceImpl implements FileImportService {
         jewel.setLength(csvJewel.getLength());
         jewel.setWidth(csvJewel.getWidth());
         jewel.setHeight(csvJewel.getHeight());
-        jewel.setPromoPrice(csvJewel.getPromoPrice());
-        jewel.setPrice(csvJewel.getPrice());
         jewel.setCategory(csvJewel.getCategory());
         jewel.setTags(csvJewel.getTags());
         jewel.setAttribute1Name(csvJewel.getAttribute1Name());

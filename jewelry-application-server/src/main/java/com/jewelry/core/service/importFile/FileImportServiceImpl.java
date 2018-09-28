@@ -7,6 +7,8 @@ import com.jewelry.core.util.mapper.GeneralMapper;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import org.apache.commons.io.input.BOMInputStream;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,8 @@ import java.util.List;
 
 @Service
 public class FileImportServiceImpl implements FileImportService {
+
+    public static final Logger logger = LoggerFactory.getLogger(FileImportServiceImpl.class);
 
     public static final String SKU = "SKU";
     private static final String IMAGE_SEPARATOR = ",";
@@ -44,11 +48,12 @@ public class FileImportServiceImpl implements FileImportService {
                 .withIgnoreLeadingWhiteSpace(true)
                 .withSeparator(';')
                 .build();
-
         Iterator<CSVJewel> iterator = csvToBean.iterator();
         List<Jewel> jewelsToSave = new ArrayList<>();
         while (iterator.hasNext()) {
             CSVJewel csvJewel = iterator.next();
+            logger.info("Adding jewel. SKU={}, Name={}", csvJewel.getSku(), csvJewel.getName());
+
             if (csvJewel.getSku() == null) {
                 skippedRows.add(csvJewel.getBusinessId());
             } else {
@@ -64,6 +69,7 @@ public class FileImportServiceImpl implements FileImportService {
         if (!skippedRows.isEmpty() && !skipEmptySku) {
             throw new FileImportException("Not all rows contains SKU", skippedRows);
         } else {
+            jewelsToSave.forEach(jewel -> logger.info("Saving jewel. SKU={}, Name={}", jewel.getSku(), jewel.getName()));
             jewelryRepository.saveAll(jewelsToSave);
         }
     }

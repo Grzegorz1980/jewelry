@@ -34,7 +34,7 @@ public class GenerateXLSController {
         Resource resource = new ByteArrayResource(bytes);
         return ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=test.xlsx")
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=Kalkulacja.xlsx")
                 .header(HttpHeaders.ACCESS_CONTROL_EXPOSE_HEADERS, HttpHeaders.CONTENT_DISPOSITION)
                 .body(resource);
     }

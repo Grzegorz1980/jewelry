@@ -129,7 +129,7 @@
       </div>
       <div fxLayout="row" fxLayoutAlign="space-between center">
         <div>
-          <mat-label>Cena sugerowana: {{jewel.priceUsd * settings.usdRate * ((settings.regularRate + 100) / 100)|currency:'PLN '}}</mat-label>
+          <mat-label>Cena sugerowana: {{jewel.priceUsd * settings.usdRate * ((settings.regularRate + 100) / 100)*1.23|currency:'PLN '}}</mat-label>
         </div>
         <div>
           <mat-form-field>
@@ -168,7 +168,7 @@
       </div>
       <div fxLayout="row" fxLayoutAlign="space-between center">
         <div>
-          <mat-label>Cena promocyjna sugerowana: {{jewel.priceUsd * settings.usdRate * ((settings.promoRate + 100) / 100)|currency:'PLN '}}</mat-label>
+          <mat-label>Cena promocyjna sugerowana: {{jewel.priceUsd * settings.usdRate * ((settings.promoRate + 100) / 100)*1.23|currency:'PLN '}}</mat-label>
         </div>
         <div>
           <mat-form-field>

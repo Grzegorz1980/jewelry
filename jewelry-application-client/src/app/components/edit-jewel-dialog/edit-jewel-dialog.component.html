@@ -114,11 +114,11 @@
   </div>
   <div fxLayout="row" fxLayoutAlign="space-between center">
     <div>
-      <mat-label>Cena PLN: {{jewel.priceUsd * settings.usdRate|currency:'PLN '}}</mat-label>
+      <mat-label>Koszt PLN: {{jewel.priceUsd * settings.usdRate|currency:'PLN '}}</mat-label>
     </div>
     <div>
       <mat-form-field>
-        <input matInput [(ngModel)]="jewel.priceUsd" placeholder="Cena USD:">
+        <input matInput [(ngModel)]="jewel.priceUsd" placeholder="Koszt USD:">
       </mat-form-field>
     </div>
   </div>
